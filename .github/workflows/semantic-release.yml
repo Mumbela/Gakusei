@@ -1,4 +1,4 @@
-name: Semantic Release
+name: Semantic Release and Skin Packaging
 
 on:
   push:
@@ -8,97 +8,106 @@ on:
 jobs:
   release:
     runs-on: windows-latest
+
     steps:
       - uses: actions/checkout@v3
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
+
       - name: Install Dependencies
         run: npm install
+
       - name: Run semantic-release
         id: semantic
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
 
-      - name: Get version from semantic-release
+      - name: Extract version from Git tag
         id: get_version
         shell: pwsh
         run: |
           try {
             $version = git describe --tags --abbrev=0
           } catch {
-            Write-Host "No tags found. Defaulting to 0.0.0"
+            Write-Host "⚠️ No tags found. Defaulting to 0.0.0"
             $version = "0.0.0"
           }
-          echo "$env:VERSION=$VERSION" >> $GITHUB_ENV
-          echo "Extracted version: $version"
+          echo "VERSION=$version" >> $env:GITHUB_ENV
+          Write-Host "📦 Version set to $version"
 
       - name: Install Rainmeter and locate SkinInstaller.exe
         shell: pwsh
         run: |
-          $installerUrl = "https://github.com/rainmeter/rainmeter/releases/download/v4.5.18.3727/Rainmeter-4.5.18.exe"
-          $installerPath = "$env:RUNNER_TEMP\RainmeterSetup.exe"
+          $url = "https://github.com/rainmeter/rainmeter/releases/download/v4.5.18.3727/Rainmeter-4.5.18.exe"
+          $path = "$env:RUNNER_TEMP\RainmeterSetup.exe"
+          Invoke-WebRequest -Uri $url -OutFile $path
+          Start-Process -Wait -FilePath $path -ArgumentList "/S"
 
-          Invoke-WebRequest -Uri $installerUrl -OutFile $installerPath
-          Start-Process -Wait -FilePath $installerPath -ArgumentList "/S"
-
-          # Search typical paths for SkinInstaller.exe
           $candidates = @(
             "C:\Program Files\Rainmeter\SkinInstaller.exe",
             "C:\Program Files (x86)\Rainmeter\SkinInstaller.exe"
           )
 
-          foreach ($path in $candidates) {
-            if (Test-Path $path) {
-              Copy-Item $path .\
-              Write-Host "✔ Found and copied SkinInstaller.exe from $path"
+          foreach ($p in $candidates) {
+            if (Test-Path $p) {
+              Copy-Item $p .\
+              Write-Host "✔️ Found and copied SkinInstaller.exe from $p"
               break
             }
           }
 
           if (-not (Test-Path ".\SkinInstaller.exe")) {
-            Write-Error "SkinInstaller.exe not found in known install paths."
+            Write-Error "❌ SkinInstaller.exe not found"
             exit 1
           }
-      - name: Create RMSKIN package
+
+      - name: Package all skins
         shell: pwsh
-        continue-on-error: true
         run: |
           Set-Location $env:GITHUB_WORKSPACE
-          dir
+          $skins = @("4000 English Words") # Add more skin directories as needed
           mkdir RMSKIN
-          Copy-Item  -Path "4000 English Words" -Destination "RMSKIN" -Recurse
-          ./SkinInstaller.exe RMSKIN/"4000 English Words" /S /Log
-          # Check if the RMSKIN package was created successfully
-          if (-not (Test-Path "RMSKIN\4000 English Words.rmskin")) {
-            Write-Error "RMSKIN package not created. Check SkinInstaller logs."
-            exit 1
+
+          foreach ($skin in $skins) {
+            Write-Host "`n📦 Packaging: $skin"
+            $target = "RMSKIN\$skin"
+            Copy-Item -Path $skin -Destination $target -Recurse
+
+            if (Test-Path "@Resources") {
+              Copy-Item -Path "@Resources" -Destination "$target\@Resources" -Recurse
+              Write-Host "✅ Copied @Resources into $skin"
+            }
+
+            ./SkinInstaller.exe $target /S /Log
+
+            $package = "RMSKIN\$skin.rmskin"
+            if (Test-Path $package) {
+              Rename-Item $package "$skin-$env:VERSION.rmskin"
+              Write-Host "🎉 Packaged $skin-$env:VERSION.rmskin"
+            } else {
+              Write-Host "❌ Failed to create .rmskin for $skin"
+            }
           }
-          Rename-Item "RMSKIN\4000 English Words.rmskin" "4000-English-Words-$env:VERSION.rmskin"
-      
-      - name: Show SkinInstaller log
+
+      - name: Show packaging logs
         shell: pwsh
         run: |
-          $logPath = Get-ChildItem -Path . -Recurse -Filter *.txt | Where-Object { $_.Name -like "*InstallLog*" } | Select-Object -First 1
-          if ($logPath) {
-            Write-Host "Found SkinInstaller log at $($logPath.FullName)"
-            Get-Content $logPath.FullName
-          } else {
-            Write-Host "No log file found"
+          Get-ChildItem -Recurse -Filter InstallLog.txt | ForEach-Object {
+            Write-Host "`n📝 Log: $($_.FullName)"
+            Get-Content $_.FullName
           }
 
-      - name: List contents after SkinInstaller.exe
-        shell: pwsh
-        run: dir RMSKIN -Recurse
-
-      - name: Upload .rmskin to GitHub Release
+      - name: Upload all .rmskin packages
         uses: softprops/action-gh-release@v1
         with:
-          files: 4000-English-Words-$env:VERSION.rmskin
+          files: |
+            *.rmskin
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: List files for debugging
-        run: dir /s /b
 
+      - name: List output files
+        run: dir /s /b *.rmskin
