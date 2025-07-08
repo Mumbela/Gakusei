@@ -1,0 +1,102 @@
+name: Auto Version + Package Rainmeter Skin
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger only on version tags like v2025.07.07.1612
+
+jobs:
+  package:
+    runs-on: windows-latest  # Required for .rmskin packaging
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+      - name: Run semantic-release and capture version
+        id: semantic
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npx semantic-release --ci --debug > output.json || true
+          VERSION=$(grep -oP '(?<="version": ")[^"]*' output.json | tail -1)
+          echo "VERSION=$VERSION"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Get version from semantic-release
+        id: get_version
+        run: |
+          VERSION=$(jq -r .version < .releaserc.json)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Update version.inc and .ini
+        shell: bash
+        run: |
+          echo "Updating version to $VERSION"
+          sed -i "s/^Version=.*/Version=$VERSION/" "@Resources/version.inc"
+          awk -v ver="$VERSION" '
+            BEGIN { block=0 }
+            /^\[Metadata\]/ { block=1; print; next }
+            /^\[/ && block==1 { block=0 }
+            block==1 && /^Version=/ { print "Version="ver; next }
+            !(block==1 && /^Version=/) { print }
+          ' "4000 English Words.ini" > tmp.ini && mv tmp.ini "4000 English Words.ini"
+
+      - name: Create ZIP archive
+        run: Compress-Archive -Path "4000 English Words" -DestinationPath "4000-English-Words-$env:VERSION.zip"
+
+      - name: ⬇️ Install Rainmeter and locate SkinInstaller.exe
+        shell: pwsh
+        run: |
+          $installerUrl = "https://github.com/rainmeter/rainmeter/releases/download/v4.5.18.3727/Rainmeter-4.5.18.exe"
+          $installerPath = "$env:RUNNER_TEMP\RainmeterSetup.exe"
+
+          Invoke-WebRequest -Uri $installerUrl -OutFile $installerPath
+          Start-Process -Wait -FilePath $installerPath -ArgumentList "/S"
+
+          # Search typical paths for SkinInstaller.exe
+          $candidates = @(
+            "C:\Program Files\Rainmeter\SkinInstaller.exe",
+            "C:\Program Files (x86)\Rainmeter\SkinInstaller.exe"
+          )
+
+          foreach ($path in $candidates) {
+            if (Test-Path $path) {
+              Copy-Item $path .\
+              Write-Host "✔ Found and copied SkinInstaller.exe from $path"
+              break
+            }
+          }
+
+          if (-not (Test-Path ".\SkinInstaller.exe")) {
+            Write-Error "❌ SkinInstaller.exe not found in known install paths."
+            exit 1
+          }
+
+      - name: Create RMSKIN package
+        shell: pwsh
+        run: |
+          Set-Location $env:GITHUB_WORKSPACE
+          mkdir RMSKIN
+          mkdir RMSKIN\4000 English Words
+          Copy-Item -Recurse "4000 English Words" RMSKIN\
+          ./SkinInstaller.exe RMSKIN\4000 English Words /S
+          Rename-Item "RMSKIN\4000 English Words.rmskin" "4000-English-Words-$env:VERSION.rmskin"
+
+      - name: Move .rmskin to root
+        run: move "RMSKIN\4000-English-Words-$env:VERSION.rmskin" .
+
+      - name: Upload .rmskin to GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: 4000-English-Words-$env:VERSION.rmskin
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: List files for debugging
+        run: dir /s /b

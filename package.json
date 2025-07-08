@@ -1,0 +1,36 @@
+{
+    "name": "rainmeter-skin",
+    "version": "1.0.0",
+    "private": false,
+    "description": "A rainmeter skin package for the student",
+    "keywords": [
+        "rainmeter",
+        "skin",
+        "gakusei",
+        "new vocabulary",
+        "english",
+        "student",
+        "daily word"
+    ],
+    "homepage": "https://github.com/Mumbela/Gakusei#readme",
+    "bugs": {
+        "url": "https://github.com/Mumbela/Gakusei/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Mumbela/Gakusei.git"
+    },
+    "author": "Mumbela Simonda",
+    "scripts": {
+        "semantic-release": "semantic-release",
+        "version": "version"
+    },
+    "devDependencies": {
+        "@semantic-release/changelog": "^6.0.3",
+        "@semantic-release/commit-analyzer": "^13.0.1",
+        "@semantic-release/git": "^10.0.1",
+        "@semantic-release/github": "^11.0.3",
+        "@semantic-release/release-notes-generator": "^14.0.3",
+        "semantic-release": "^24.2.6"
+    }
+}
