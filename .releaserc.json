@@ -10,6 +10,7 @@
         "assets": [
           "@Resources/scrips/Script.lua",
           "@Resources/variables.inc",
+          "@Resources/version.inc",
           "@Resources/words.txt",
           "4000 English Words/4000 English Words.ini",
           "README.md",
