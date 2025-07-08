@@ -66,7 +66,7 @@ jobs:
         shell: pwsh
         run: |
           Set-Location $env:GITHUB_WORKSPACE
-          echo cwd
+          dir
           mkdir RMSKIN
           Copy-Item  -Path "4000 English Words" -Destination "RMSKIN" -Recurse
           ./SkinInstaller.exe RMSKIN/"4000 English Words" /S /Log
