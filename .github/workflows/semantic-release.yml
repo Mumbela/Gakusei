@@ -69,7 +69,7 @@ jobs:
           echo cwd
           mkdir RMSKIN
           Copy-Item  -Path "4000 English Words" -Destination "RMSKIN" -Recurse
-          ./SkinInstaller.exe RMSKIN/"4000 English Words" /S /log
+          ./SkinInstaller.exe RMSKIN/"4000 English Words" /S /Log
           # Check if the RMSKIN package was created successfully
           if (-not (Test-Path "RMSKIN\4000 English Words.rmskin")) {
             Write-Error "RMSKIN package not created. Check SkinInstaller logs."
@@ -77,6 +77,10 @@ jobs:
           }
           Rename-Item "RMSKIN\4000 English Words.rmskin" "4000-English-Words-$env:VERSION.rmskin"
       
+      - name: Show packaging log
+        shell: pwsh
+        run: type "RMSKIN\InstallLog.txt"
+
       - name: List contents after SkinInstaller.exe
         shell: pwsh
         run: dir RMSKIN -Recurse
