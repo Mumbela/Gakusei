@@ -26,7 +26,12 @@ jobs:
         id: get_version
         shell: pwsh
         run: |
-          $version = git describe --tags --abbrev=0
+          try {
+            $version = git describe --tags --abbrev=0
+          } catch {
+            Write-Host "No tags found. Defaulting to 0.0.0"
+            $version = "0.0.0"
+          }
           echo "$env:VERSION=$VERSION" >> $GITHUB_ENV
           echo "Extracted version: $version"
 
