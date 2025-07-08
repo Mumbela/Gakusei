@@ -64,6 +64,7 @@ jobs:
           }
       - name: Create RMSKIN package
         shell: pwsh
+        continue-on-error: true
         run: |
           Set-Location $env:GITHUB_WORKSPACE
           dir
@@ -77,9 +78,16 @@ jobs:
           }
           Rename-Item "RMSKIN\4000 English Words.rmskin" "4000-English-Words-$env:VERSION.rmskin"
       
-      - name: Show packaging log
+      - name: Show SkinInstaller log
         shell: pwsh
-        run: type "RMSKIN\InstallLog.txt"
+        run: |
+          $logPath = Get-ChildItem -Path . -Recurse -Filter *.txt | Where-Object { $_.Name -like "*InstallLog*" } | Select-Object -First 1
+          if ($logPath) {
+            Write-Host "Found SkinInstaller log at $($logPath.FullName)"
+            Get-Content $logPath.FullName
+          } else {
+            Write-Host "No log file found"
+          }
 
       - name: List contents after SkinInstaller.exe
         shell: pwsh
