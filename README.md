@@ -56,6 +56,27 @@ Alternatively, download the latest `.rmskin` package from the [Releases](https:/
 
 Pull requests and suggestions are welcome! Please open an issue to discuss any changes or ideas.
 
+### Commit Messages
+
+```
+type(scope): concise summary of change
+
+[Optional body: More detailed explanation of what changed and why.]
+
+[Optional footer: BREAKING CHANGE: description of breaking change]
+```
+
+- type: Describes the kind of change (`feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, etc.)
+- scope (optional): What part of the code or project was affected.
+- description: One-line describing the change, written in the *imperative* ("add feature" not "added feature")
+
+Example:
+```
+docs(commit-messages):
+
+add Commit Messages section to docummentation
+```
+
 ## License
 
 This project is licensed under the Creative Commons Attribution - Non - Commercial - Share Alike 3.0 license.
