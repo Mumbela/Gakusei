@@ -27,9 +27,9 @@ This repository contains the "Gakusei" collection of Rainmeter skins, including 
    ```
 4. Open Rainmeter, refresh all, and load the desired skins from the Rainmeter manager.
 
-### RMSKIN Installer Package *(Planned)* 
+### RMSKIN Installer Package
 
-<!--Alternatively, download the latest `.rmskin` package from the [Releases](https://github.com/Gakusei/Gakusei/releases) page.
+Alternatively, download the latest `.rmskin` package from the [Releases](https://github.com/Gakusei/Gakusei/releases) page.
 
 1. Double-click the `.rmskin` file to install.
 2. Follow the prompts to select and install your preferred skins.
@@ -38,7 +38,7 @@ This repository contains the "Gakusei" collection of Rainmeter skins, including 
 
 - After installation, open Rainmeter and load the "4000 English Words" skin.
 - The skin will display a new word and its meaning every hour.
-- You can customize or extend the word list by editing [`@Resources/words.txt`](./@Resources/words.txt).-->
+- You can customize or extend the word list by editing [`@Resources/words.txt`](./@Resources/words.txt).
 
 ## Project Structure
 
