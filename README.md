@@ -11,6 +11,10 @@ This repository contains the "Gakusei" collection of Rainmeter skins, including 
 
 ## Installation
 
+### Rainmeter
+
+The packages require you to install Rainmeter. You should check out the official website [www.rainmeter.net](https://www.rainmeter.net/) on how to download and install it on your system.
+
 ### Manual Installation
 
 1. Download or clone this repository.
