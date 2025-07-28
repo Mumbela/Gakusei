@@ -41,7 +41,7 @@ Alternatively, download the latest `.rmskin` package from the [Releases](https:/
 ## Usage
 
 - After installation, open Rainmeter and load the "4000 English Words" skin.
-- The skin will display a new word and its meaning every hour.
+- The skin will display a new word and its meaning every 5 minutes.
 - You can customize or extend the word list by editing [`@Resources/words.txt`](./@Resources/words.txt).
 
 ## Project Structure
