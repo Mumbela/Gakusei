@@ -33,7 +33,7 @@ The packages require you to install Rainmeter. You should check out the official
 
 ### RMSKIN Installer Package
 
-Alternatively, download the latest `.rmskin` package from the [Releases](https://github.com/Gakusei/Gakusei/releases) page.
+Alternatively, download the latest `.rmskin` package from the [Releases](https://github.com/Gakusei/releases) page.
 
 1. Double-click the `.rmskin` file to install.
 2. Follow the prompts to select and install your preferred skins.
