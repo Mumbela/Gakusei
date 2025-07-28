@@ -6,7 +6,7 @@ This repository contains the "Gakusei" collection of Rainmeter skins, including 
 
 ## Features
 
-- **4000 English Words**: Displays a new English word and its meaning every hour to help expand your vocabulary.
+- **4000 English Words**: Displays a new English word and its meaning every 5 minutes to help expand your vocabulary.
 - *(Planned)* **Bible Verses**: Will display a new Bible verse every 5 minutes.
 
 ## Installation
