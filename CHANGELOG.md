@@ -1,3 +1,16 @@
+# [1.1.0](https://github.com/Mumbela/Gakusei/compare/v1.0.1...v1.1.0) (2026-04-26)
+
+
+### Bug Fixes
+
+* **4000-english-words:** resize default skin to fit text ([a940faa](https://github.com/Mumbela/Gakusei/commit/a940faae1994268681a25fe3869adca0ad0eb4ab))
+* **words:** repair mojibake in vocabulary list ([f53f0df](https://github.com/Mumbela/Gakusei/commit/f53f0df213b16828705cc3772aed659a69e9fb66))
+
+
+### Features
+
+* **4000-english-words:** add compact and wrapped skin variants ([5d2d263](https://github.com/Mumbela/Gakusei/commit/5d2d263c389b262580ef0ebaeccafa0affc3ea4c))
+
 ## [1.0.1](https://github.com/Mumbela/Gakusei/compare/v1.0.0...v1.0.1) (2025-07-28)
 
 
