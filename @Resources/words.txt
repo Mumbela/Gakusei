@@ -1,5 +1,5 @@
 a cappella, without accompaniment
-Ã  la carte, priced separately
+à la carte, priced separately
 a priori, reasoning based on general principles
 aback, unexpected, surprised
 abacus, counting device
@@ -131,7 +131,7 @@ aggrieved, unjustly injured
 aghast, horrified
 agile, nimble
 agitate, stir up
-agnate, related on the fatherâ€™s side
+agnate, related on the father’s side
 agnostic, not knowing whether God exists
 affront, insult
 agrarian, pertaining to farming
@@ -226,7 +226,7 @@ anodyne, pain soothing
 anoint, consecrate, apply ointment
 anomalous, abnormal
 anonymity, state of being anonymous
-apostate, one who abandons oneâ€™s faith
+apostate, one who abandons one’s faith
 apotheosis, deification
 appall, horrify
 apparition, phantom
@@ -320,7 +320,7 @@ astute, wise
 asunder, apart, into separate parts
 asylum, place of refuge
 asymmetric, uneven
-atavistic, exhibiting the characteristics of oneâ€™s forebears
+atavistic, exhibiting the characteristics of one’s forebears
 atelier, workshop
 atoll, reef
 atomize, vaporize
@@ -453,7 +453,7 @@ biped, two-footed animal
 bistro, tavern, cafe
 bivouac, encampment
 blandish, flatter, grovel
-blasÃ©, bored with life
+blasé, bored with life
 blasphemy, insulting God
 bleak, cheerless, forlorn
 blight, decay
@@ -471,7 +471,7 @@ brigand, robber
 brink, edge, threshold
 broach, bring up a topic for conversation
 bloated, swollen
-bromide, clichÃ©
+bromide, cliché
 bode, portend
 brook, tolerate
 bogus, forged, false
@@ -563,7 +563,7 @@ chafe, abrade
 chagrin, embarrassment
 caucus, meeting
 chalice, goblet
-cause cÃ©lÃ¨bre, celebrated legal case
+cause célèbre, celebrated legal case
 champion, defend
 caustic, scathing (of speech)
 chaperon, escort
@@ -805,10 +805,10 @@ cordon, bond, chain, barrier
 cornucopia, cone-shaped horn filled with fruit
 corollary, consequence
 coronation crowning of a sovereign
-coup de grÃ¢ce, final stroke, a blow of mercy
+coup de grâce, final stroke, a blow of mercy
 court-martial, military trial
 courtesan, prostitute
-courtier, member of the kingâ€™s court
+courtier, member of the king’s court
 covenant, agreement, pact
 covert, secret 
 covet, desire
@@ -944,7 +944,7 @@ deplete, exhaust
 desultory, without direction in life
 detached, emotionally removed
 detain, confine
-dÃ©tente, truce
+détente, truce
 deplore, condemn
 detention, confinement
 deploy, arrange forces
@@ -1138,7 +1138,7 @@ ecclesiastical, churchly
 elate, raise spirits
 echelon, degree, rank
 electorate, voters
-Ã©clat, brilliance
+éclat, brilliance
 eleemosynary, pertaining to charity
 eclectic, from many sources
 elegant, refined, exquisite
@@ -1194,7 +1194,7 @@ empower, enable, grant
 emulate, imitate
 enact, decree, ordain
 enamored, charmed, captivated
-enate, related on the motherâ€™s side
+enate, related on the mother’s side
 encapsulate, condense
 enchant, charm
 enclave, area enclosed within another region
@@ -1419,7 +1419,7 @@ fetters, shackles
 fey, eccentric, whimsical
 fiasco, debacle
 fiat, decree
-fickle, always changing oneâ€™s mind
+fickle, always changing one’s mind
 fictitious, invented, imaginary
 fidelity, loyalty
 figment, falsehood, fantasy
@@ -1915,7 +1915,7 @@ isosceles, having two equal sides
 itinerant, wandering
 itinerary, route
 jabberwocky, nonsense
-jaded, spent, bored with oneâ€™s situation
+jaded, spent, bored with one’s situation
 jargon, specialized vocabulary
 jaundiced, biased, embittered
 jeer, mock
@@ -1980,7 +1980,7 @@ largess, generous donation
 lascivious, lustful
 lassitude, lethargy
 libertarian, one who believes in complete freedom
-libertine, rouÃ©, rake
+libertine, roué, rake
 libidinous, lustful
 licentious, lewd, immoral
 lien, financial claim
@@ -2207,7 +2207,7 @@ munificent, generous
 murmur, mutter, mumble
 muse, ponder
 moral, ethical
-muster, to gather oneâ€™s forces
+muster, to gather one’s forces
 morale, spirit, confidence
 mutability, able to change
 morass, swamp, difficult situation
@@ -2234,7 +2234,7 @@ nascent, incipient
 natal, related to birth
 nativity, the process of birth 
 naturalize, grant citizenship 
-neâ€™er-do-well, loafer, idler 
+ne’er-do-well, loafer, idler 
 nebulous, indistinct 
 necromancy, sorcery 
 nefarious, evil
@@ -2249,7 +2249,7 @@ nervy, brash
 nether, under
 nexus, a link between two or more people or things 
 nicety, euphemism
-niche, nook, an activity that well suits a personâ€™s talents
+niche, nook, an activity that well suits a person’s talents
 niggardly, stingy
 nimble, spry
 nirvana, bliss, the attainment of spiritual enlightenment
@@ -2395,7 +2395,7 @@ Paleolithic, stone age
 otiose, idle
 ouster, ejection
 outmoded, out-of-date
-outrÃ©, eccentric
+outré, eccentric
 outset, beginning
 ovation, applause
 overrule, disallow
@@ -2422,7 +2422,7 @@ pacify, appease
 pact, agreement
 paean, a song of praise
 pandemonium, din, commotion
-pander, cater to peopleâ€™s baser instincts
+pander, cater to people’s baser instincts
 panegyric, praise
 pang, short sharp pain
 panoply, full suit of armor
@@ -2466,7 +2466,7 @@ parole, release
 partition, division
 parvenu, newcomer, social climber
 pasquinade, satire
-passÃ©, outmoded
+passé, outmoded
 passim, here and there
 pastel, pale
 pasteurize, disinfect
@@ -2651,7 +2651,7 @@ precipitate, cause
 porcine, pig-like
 precipitous, steep
 porous, permeable, spongy
-prÃ©cis, summary
+précis, summary
 porridge, stew
 precise, accurate, detailed
 portend, signify, augur
@@ -2804,7 +2804,7 @@ protagonist, main character in a story
 prospectus, brochure
 protean, changing readily
 prostrate, supine
-protÃ©gÃ©, ward, pupil 
+protégé, ward, pupil 
 protocol, code of diplomatic etiquette
 proton, particle
 protract, prolong
@@ -3131,7 +3131,7 @@ rife, widespread, abundant
 riffraff, dregs of society
 rifle, search through and steal
 rift, a split, an opening, disagreement
-rouÃ©, libertine
+roué, libertine
 rouse, awaken, provoke
 rout, vanquish, cause to retreat
 rubicund, ruddy complexion
@@ -3147,7 +3147,7 @@ riposte, counterthrust
 rummage, hunt, grope
 risible, laughable
 runel, stream
-risquÃ©, off-color, racy
+risqué, off-color, racy
 ruse, trick
 rivet, engross
 rustic, rural
@@ -3528,7 +3528,7 @@ suffrage, vote
 surname, family name
 suffuse, pervade, permeate
 surpass, exceed, excel
-suggestive, thought-provoking, risquÃ©
+suggestive, thought-provoking, risqué
 surreal, dreamlike
 sullen, sulky, sour
 surreptitious, secretive
