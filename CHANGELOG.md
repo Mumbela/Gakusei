@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/Mumbela/Gakusei/compare/v1.1.2...v1.1.3) (2026-04-26)
+
+
+### Bug Fixes
+
+* **ci:** package rainmeter skin from repo root layout ([18fc6a9](https://github.com/Mumbela/Gakusei/commit/18fc6a930e340a70482c64d8d5cdc55ce4e86df2))
+
 ## [1.1.2](https://github.com/Mumbela/Gakusei/compare/v1.1.1...v1.1.2) (2026-04-26)
 
 
