@@ -25,30 +25,29 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: '24'
-          cache: 'npm'
+          node-version: "24"
+          cache: "npm"
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm ci
 
       - name: Run semantic-release
-        id: semantic
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
 
       - name: Extract version from Git tag
-        id: get_version
         shell: pwsh
         run: |
           try {
             $version = git describe --tags --abbrev=0
           } catch {
-            Write-Host "⚠️ No tags found. Defaulting to 0.0.0"
+            Write-Host "No tags found. Defaulting to 0.0.0"
             $version = "0.0.0"
           }
-          echo "VERSION=$version" >> $env:GITHUB_ENV
-          Write-Host "📦 Version set to $version"
+
+          "VERSION=$version" >> $env:GITHUB_ENV
+          Write-Host "Version set to $version"
 
       - name: Install Rainmeter and locate SkinInstaller.exe
         shell: pwsh
@@ -63,16 +62,16 @@ jobs:
             "C:\Program Files (x86)\Rainmeter\SkinInstaller.exe"
           )
 
-          foreach ($p in $candidates) {
-            if (Test-Path $p) {
-              Copy-Item $p .\
-              Write-Host "✔️ Found and copied SkinInstaller.exe from $p"
+          foreach ($candidate in $candidates) {
+            if (Test-Path $candidate) {
+              Copy-Item $candidate .\
+              Write-Host "Found and copied SkinInstaller.exe from $candidate"
               break
             }
           }
 
           if (-not (Test-Path ".\SkinInstaller.exe")) {
-            Write-Error "❌ SkinInstaller.exe not found"
+            Write-Error "SkinInstaller.exe not found"
             exit 1
           }
 
@@ -80,35 +79,44 @@ jobs:
         shell: pwsh
         run: |
           Set-Location $env:GITHUB_WORKSPACE
-          $skins = @("4000 English Words") # Add more skin directories as needed
-          mkdir RMSKIN
+          $skins = @("4000 English Words")
+
+          New-Item -ItemType Directory -Force -Path "RMSKIN" | Out-Null
+          New-Item -ItemType Directory -Force -Path "dist" | Out-Null
 
           foreach ($skin in $skins) {
-            Write-Host "`n📦 Packaging: $skin"
+            Write-Host "`nPackaging: $skin"
             $target = "RMSKIN\$skin"
-            Copy-Item -Path $skin -Destination $target -Recurse
+
+            if (Test-Path $target) {
+              Remove-Item $target -Recurse -Force
+            }
+
+            Copy-Item -Path $skin -Destination $target -Recurse -Force
 
             if (Test-Path "@Resources") {
-              Copy-Item -Path "@Resources" -Destination "$target\@Resources" -Recurse
-              Write-Host "✅ Copied @Resources into $skin"
+              Copy-Item -Path "@Resources" -Destination "$target\@Resources" -Recurse -Force
+              Write-Host "Copied @Resources into $skin"
             }
 
             ./SkinInstaller.exe $target /S /Log
 
             $package = "RMSKIN\$skin.rmskin"
-            if (Test-Path $package) {
-              Rename-Item $package "$skin-$env:VERSION.rmskin"
-              Write-Host "🎉 Packaged $skin-$env:VERSION.rmskin"
-            } else {
-              Write-Host "❌ Failed to create .rmskin for $skin"
+            if (-not (Test-Path $package)) {
+              Write-Error "Failed to create .rmskin for $skin"
+              exit 1
             }
+
+            $releasePackage = "dist\$skin-$env:VERSION.rmskin"
+            Move-Item -Path $package -Destination $releasePackage -Force
+            Write-Host "Packaged $releasePackage"
           }
 
       - name: Show packaging logs
         shell: pwsh
         run: |
           Get-ChildItem -Recurse -Filter InstallLog.txt | ForEach-Object {
-            Write-Host "`n📝 Log: $($_.FullName)"
+            Write-Host "`nLog: $($_.FullName)"
             Get-Content $_.FullName
           }
 
@@ -117,9 +125,11 @@ jobs:
         with:
           tag_name: ${{ env.VERSION }}
           files: |
-            *.rmskin
+            dist/*.rmskin
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: List output files
-        run: dir /s /b *.rmskin
+        shell: pwsh
+        run: |
+          Get-ChildItem -Path "dist" -Filter "*.rmskin" -File | Select-Object -ExpandProperty FullName
