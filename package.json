@@ -21,6 +21,9 @@
         "url": "git+https://github.com/Mumbela/Gakusei.git"
     },
     "author": "Mumbela Simonda",
+    "engines": {
+        "node": ">=24.0.0"
+    },
     "scripts": {
         "semantic-release": "semantic-release",
         "version": "version"
