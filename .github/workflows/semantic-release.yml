@@ -79,38 +79,38 @@ jobs:
         shell: pwsh
         run: |
           Set-Location $env:GITHUB_WORKSPACE
-          $skins = @("4000 English Words")
-
           New-Item -ItemType Directory -Force -Path "RMSKIN" | Out-Null
           New-Item -ItemType Directory -Force -Path "dist" | Out-Null
+          $packageRoot = "RMSKIN\Gakusei"
 
-          foreach ($skin in $skins) {
-            Write-Host "`nPackaging: $skin"
-            $target = "RMSKIN\$skin"
-
-            if (Test-Path $target) {
-              Remove-Item $target -Recurse -Force
-            }
-
-            Copy-Item -Path $skin -Destination $target -Recurse -Force
-
-            if (Test-Path "@Resources") {
-              Copy-Item -Path "@Resources" -Destination "$target\@Resources" -Recurse -Force
-              Write-Host "Copied @Resources into $skin"
-            }
-
-            ./SkinInstaller.exe $target /S /Log
-
-            $package = "RMSKIN\$skin.rmskin"
-            if (-not (Test-Path $package)) {
-              Write-Error "Failed to create .rmskin for $skin"
-              exit 1
-            }
-
-            $releasePackage = "dist\$skin-$env:VERSION.rmskin"
-            Move-Item -Path $package -Destination $releasePackage -Force
-            Write-Host "Packaged $releasePackage"
+          if (Test-Path $packageRoot) {
+            Remove-Item $packageRoot -Recurse -Force
           }
+
+          New-Item -ItemType Directory -Force -Path $packageRoot | Out-Null
+
+          Copy-Item -Path "4000 English Words" -Destination $packageRoot -Recurse -Force
+
+          if (Test-Path "@Resources") {
+            Copy-Item -Path "@Resources" -Destination "$packageRoot\@Resources" -Recurse -Force
+            Write-Host "Copied @Resources into package root"
+          }
+
+          Write-Host "`nPackaging: $packageRoot"
+          ./SkinInstaller.exe $packageRoot /S /Log
+
+          $package = Get-ChildItem -Path "RMSKIN" -Filter "*.rmskin" -File -Recurse |
+            Sort-Object LastWriteTime -Descending |
+            Select-Object -First 1
+
+          if (-not $package) {
+            Write-Error "Failed to create .rmskin package"
+            exit 1
+          }
+
+          $releasePackage = "dist\Gakusei-$env:VERSION.rmskin"
+          Move-Item -Path $package.FullName -Destination $releasePackage -Force
+          Write-Host "Packaged $releasePackage"
 
       - name: Show packaging logs
         shell: pwsh
@@ -119,6 +119,11 @@ jobs:
             Write-Host "`nLog: $($_.FullName)"
             Get-Content $_.FullName
           }
+
+      - name: Show RMSKIN workspace contents
+        shell: pwsh
+        run: |
+          Get-ChildItem -Path "RMSKIN" -Recurse | Select-Object FullName
 
       - name: Upload all .rmskin packages
         uses: softprops/action-gh-release@v1
