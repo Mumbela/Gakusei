@@ -1,5 +1,9 @@
 # Gakusei Rainmeter Skins
 
+[![Release Workflow](https://github.com/Mumbela/Gakusei/actions/workflows/semantic-release.yml/badge.svg)](https://github.com/Mumbela/Gakusei/actions/workflows/semantic-release.yml)
+[![Latest Release](https://img.shields.io/github/v/release/Mumbela/Gakusei)](https://github.com/Mumbela/Gakusei/releases)
+[![License: CC BY-NC-SA 3.0](https://img.shields.io/badge/license-CC%20BY--NC--SA%203.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/3.0/)
+
 ## Overview
 
 This repository contains the "Gakusei" collection of Rainmeter skins, including the **4000 English Words** vocabulary skin. These skins are designed to enhance your desktop with useful and educational widgets.
