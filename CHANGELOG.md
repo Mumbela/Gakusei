@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/Mumbela/Gakusei/compare/v1.1.1...v1.1.2) (2026-04-26)
+
+
+### Bug Fixes
+
+* **ci:** publish rmskin files from dist output ([2d9c775](https://github.com/Mumbela/Gakusei/commit/2d9c77596eedc5b9ba533a72a80d951a4f26aec4))
+
 ## [1.1.1](https://github.com/Mumbela/Gakusei/compare/v1.1.0...v1.1.1) (2026-04-26)
 
 
