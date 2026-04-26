@@ -1,5 +1,4 @@
 # Ignore node modules and lock files
-*lock.json
 !package-lock.json
 @Resources/last_word.txt
 node_modules
