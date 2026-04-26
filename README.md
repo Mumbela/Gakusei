@@ -40,13 +40,18 @@ Alternatively, download the latest `.rmskin` package from the [Releases](https:/
 
 ## Usage
 
-- After installation, open Rainmeter and load the "4000 English Words" skin.
-- The skin will display a new word and its meaning every 5 minutes.
+- After installation, open Rainmeter and load one of the "4000 English Words" variants:
+- `4000 English Words`: the original wide single-line layout.
+- `4000 English Words Compact`: smaller text in a tighter single-line layout for narrower spaces.
+- `4000 English Words Wrapped`: a narrower multiline layout that wraps long entries for smaller screens.
+- Each skin displays a new word and its meaning every 5 minutes.
 - You can customize or extend the word list by editing [`@Resources/words.txt`](./@Resources/words.txt).
 
 ## Project Structure
 
-- [`4000 English Words/4000 English Words.ini`](./4000 English Words/4000 English Words.ini): Main Rainmeter skin configuration.
+- [`4000 English Words/4000 English Words.ini`](./4000 English Words/4000 English Words.ini): Original wide single-line skin.
+- [`4000 English Words/4000 English Words Compact.ini`](./4000 English Words/4000 English Words Compact.ini): Compact single-line variant with smaller text.
+- [`4000 English Words/4000 English Words Wrapped.ini`](./4000 English Words/4000 English Words Wrapped.ini): Wrapped multiline variant for smaller screens.
 - [`@Resources/words.txt`](./@Resources/words.txt): List of words and meanings.
 <!-- - [`@Resources/version.inc`](./@Resources/version.inc): Version information (auto-updated). -->
 - [`@Resources/scripts/Script.lua`](./@Resources/scripts/Script.lua): Lua script for word selection.
