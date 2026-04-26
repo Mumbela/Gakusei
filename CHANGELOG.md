@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/Mumbela/Gakusei/compare/v1.1.0...v1.1.1) (2026-04-26)
+
+
+### Bug Fixes
+
+* **ci:** add npm lockfile and node24 workflow support ([b62ecff](https://github.com/Mumbela/Gakusei/commit/b62ecff9e99f967257f8590391211072a2b6749b))
+* **CI:** add package-lock.json so CI will run properly ([a8899b2](https://github.com/Mumbela/Gakusei/commit/a8899b2606a6c94fb66ba54ed9a41020f823656e))
+* **ci:** repair release packaging workflow ([398a7b6](https://github.com/Mumbela/Gakusei/commit/398a7b61cfe1a5b60bd5d5d80fe62000cb1352cb))
+
 # [1.1.0](https://github.com/Mumbela/Gakusei/compare/v1.0.1...v1.1.0) (2026-04-26)
 
 
